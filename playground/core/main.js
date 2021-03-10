@@ -5,33 +5,19 @@ import '../../build/swiper-bundle.css';
 import Swiper from '../../build/swiper-bundle.esm';
 
 // eslint-disable-next-line
-window.swiper = new Swiper({
-  el: '.swiper-container',
-  initialSlide: 2,
-  spaceBetween: 50,
-  slidesPerView: 2,
-  centeredSlides: true,
-  slideToClickedSlide: true,
+window.swiper = new Swiper('.swiper-container', {
+  effect: 'coverflow',
   grabCursor: true,
-  scrollbar: {
-    el: '.swiper-scrollbar',
-  },
-  mousewheel: {
-    enabled: true,
-  },
-  keyboard: {
-    enabled: true,
+  centeredSlides: true,
+  slidesPerView: 'auto',
+  coverflowEffect: {
+    rotate: 9.3,
+    stretch: 0,
+    depth: 0,
+    modifier: 1,
+    slideShadows: false,
   },
   pagination: {
     el: '.swiper-pagination',
-  },
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-  a11y: {
-    containerMessage: 'Example content',
-    containerRoleDescriptionMessage: 'carousel',
-    itemRoleDescriptionMessage: 'slide',
   },
 });

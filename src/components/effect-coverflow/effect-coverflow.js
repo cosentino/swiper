@@ -19,9 +19,11 @@ const Coverflow = {
       const offsetMultiplier =
         ((center - slideOffset - slideSize / 2) / slideSize) * params.modifier;
 
-      let rotateY = isHorizontal ? rotate * offsetMultiplier : 0;
-      let rotateX = isHorizontal ? 0 : rotate * offsetMultiplier;
-      // var rotateZ = 0
+      // let rotateY = isHorizontal ? rotate * offsetMultiplier : 0;
+      // let rotateX = isHorizontal ? 0 : rotate * offsetMultiplier;
+      let rotateY = 0;
+      let rotateX = 0;
+      let rotateZ = -rotate * offsetMultiplier;
       let translateZ = -translate * Math.abs(offsetMultiplier);
 
       let stretch = params.stretch;
@@ -29,8 +31,13 @@ const Coverflow = {
       if (typeof stretch === 'string' && stretch.indexOf('%') !== -1) {
         stretch = (parseFloat(params.stretch) / 100) * slideSize;
       }
-      let translateY = isHorizontal ? 0 : stretch * offsetMultiplier;
-      let translateX = isHorizontal ? stretch * offsetMultiplier : 0;
+
+      // BEGIN: CUSTOM ARC EFFECT
+      // let translateY = isHorizontal ? 0 : stretch * offsetMultiplier;
+      // let translateX = isHorizontal ? stretch * offsetMultiplier : 0;
+      let translateY = 0;
+      let translateX = -slideOffset;
+      // END: CUSTOM ARC EFFECT
 
       let scale = 1 - (1 - params.scale) * Math.abs(offsetMultiplier);
 
@@ -40,9 +47,10 @@ const Coverflow = {
       if (Math.abs(translateZ) < 0.001) translateZ = 0;
       if (Math.abs(rotateY) < 0.001) rotateY = 0;
       if (Math.abs(rotateX) < 0.001) rotateX = 0;
+      if (Math.abs(rotateZ) < 0.001) rotateZ = 0;
       if (Math.abs(scale) < 0.001) scale = 0;
 
-      const slideTransform = `translate3d(${translateX}px,${translateY}px,${translateZ}px)  rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
+      const slideTransform = `translate3d(${translateX}px,${translateY}px,${translateZ}px)  rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) scale(${scale})`;
 
       $slideEl.transform(slideTransform);
       $slideEl[0].style.zIndex = -Math.abs(Math.round(offsetMultiplier)) + 1;
@@ -112,7 +120,9 @@ export default {
       swiper.classNames.push(`${swiper.params.containerModifierClass}3d`);
 
       swiper.params.watchSlidesProgress = true;
+      swiper.params.virtualTranslate = true;
       swiper.originalParams.watchSlidesProgress = true;
+      swiper.originalParams.virtualTranslate = true;
     },
     setTranslate(swiper) {
       if (swiper.params.effect !== 'coverflow') return;

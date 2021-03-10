@@ -20,5 +20,10 @@ module.exports = (name = null) =>
  * Released under the ${pkg.license} License
  *
  * Released on: ${date.month} ${date.day}, ${date.year}
+ *
+ * -----------
+ * FORKED AND CUSTOMIZED BY MARCELLO COSENTINO for FRG "Storie di Seta"
+ * see https://github.com/cosentino/swiper
+ * -----------
  */
 `.trim()}\n`;
