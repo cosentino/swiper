@@ -119,7 +119,7 @@ const A11y = {
       swiper.pagination.bullets &&
       swiper.pagination.bullets.length
     ) {
-      swiper.pagination.bullets.each((bulletEl) => {
+      swiper.pagination.bullets.each((index, bulletEl) => {
         const $bulletEl = $(bulletEl);
         swiper.a11y.makeElFocusable($bulletEl);
         if (!swiper.params.pagination.renderBullet) {
@@ -165,7 +165,7 @@ const A11y = {
       swiper.a11y.addElRoleDescription($(swiper.slides), params.itemRoleDescriptionMessage);
     }
     swiper.a11y.addElRole($(swiper.slides), 'group');
-    swiper.slides.each((slideEl) => {
+    swiper.slides.each((index, slideEl) => {
       const $slideEl = $(slideEl);
       swiper.a11y.addElLabel($slideEl, `${$slideEl.index() + 1} / ${swiper.slides.length}`);
     });

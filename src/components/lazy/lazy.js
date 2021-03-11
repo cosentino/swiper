@@ -28,7 +28,7 @@ const Lazy = {
     }
     if ($images.length === 0) return;
 
-    $images.each((imageEl) => {
+    $images.each((index, imageEl) => {
       const $imageEl = $(imageEl);
       $imageEl.addClass(params.loadingClass);
 
@@ -60,7 +60,7 @@ const Lazy = {
             $imageEl.removeAttr('data-sizes');
           }
           if ($pictureEl.length) {
-            $pictureEl.children('source').each((sourceEl) => {
+            $pictureEl.children('source').each((index, sourceEl) => {
               const $source = $(sourceEl);
 
               if ($source.attr('data-srcset')) {
@@ -132,7 +132,7 @@ const Lazy = {
 
     if (!swiper.lazy.initialImageLoaded) swiper.lazy.initialImageLoaded = true;
     if (swiper.params.watchSlidesVisibility) {
-      $wrapperEl.children(`.${swiperParams.slideVisibleClass}`).each((slideEl) => {
+      $wrapperEl.children(`.${swiperParams.slideVisibleClass}`).each((i, slideEl) => {
         const index = isVirtual ? $(slideEl).attr('data-swiper-slide-index') : $(slideEl).index();
         swiper.lazy.loadInSlide(index);
       });

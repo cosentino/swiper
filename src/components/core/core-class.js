@@ -61,7 +61,7 @@ class Swiper {
 
     if (params.el && $(params.el).length > 1) {
       const swipers = [];
-      $(params.el).each((containerEl) => {
+      $(params.el).each((index, containerEl) => {
         const newParams = extend({}, params, { el: containerEl });
         swipers.push(new Swiper(newParams));
       });
@@ -268,7 +268,7 @@ class Swiper {
     const swiper = this;
     if (!swiper.params._emitClasses || !swiper.el) return;
     const updates = [];
-    swiper.slides.each((slideEl) => {
+    swiper.slides.each((index, slideEl) => {
       const classNames = swiper.getSlideClasses(slideEl);
       updates.push({ slideEl, classNames });
       swiper.emit('_slideClass', slideEl, classNames);
@@ -377,7 +377,7 @@ class Swiper {
 
     swiper.params.direction = newDirection;
 
-    swiper.slides.each((slideEl) => {
+    swiper.slides.each((index, slideEl) => {
       if (newDirection === 'vertical') {
         slideEl.style.width = '';
       } else {

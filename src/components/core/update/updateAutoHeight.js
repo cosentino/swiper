@@ -11,7 +11,7 @@ export default function updateAutoHeight(speed) {
   // Find slides currently in view
   if (swiper.params.slidesPerView !== 'auto' && swiper.params.slidesPerView > 1) {
     if (swiper.params.centeredSlides) {
-      swiper.visibleSlides.each((slide) => {
+      swiper.visibleSlides.each((index, slide) => {
         activeSlides.push(slide);
       });
     } else {
