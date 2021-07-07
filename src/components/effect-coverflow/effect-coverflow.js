@@ -83,6 +83,13 @@ const Coverflow = {
   },
   setTransition(duration) {
     const swiper = this;
+
+    // Restore animating=false to allow for slideNext and slidePrev
+    // See also: https://github.com/nolimits4web/swiper/issues/1267
+    setTimeout(function () {
+      swiper.animating = false;
+    }, duration);
+
     swiper.slides
       .transition(duration)
       .find(
